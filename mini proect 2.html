@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width" >
+        <style>
+            :root{
+            --background: #524eee;
+            }
+
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;}
+
+            body{
+                font-family: 'Courier New', Courier, monospace;
+                background-color: rgb(20, 20, 20);
+                color: rgb(236, 236, 236);
+
+                font-size: 26px;}
+
+            .radio-section{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+
+            h1{
+                margin-bottom: 20px;
+            }
+
+            .radio-item [type="radio"] {
+                display:none;
+            }
+
+            .radio-item + .radio-item{
+                margin-top: 20px;
+            }
+
+            .radio-item label{
+                display: block;
+                background-color: #1d1d42;
+                border: 2px solid #1d1d42;
+                text-shadow: -0.4px 0 white, 0 0.4px White, 0.4px 0 White, 0 -0.4px White;
+                position: relative;
+                min-width: 250px;
+                padding: 20px 60px;
+                border-radius: 15px;
+                white-space: nowrap;
+                cursor: pointer;
+                font-size: 24px;
+            }
+
+            .radio-item label::before,
+            .radio-item label::after{
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            .radio-item label:after {
+                height: 24px;
+                width: 24px;
+                border: 2px solid var(--background);
+                left: 20px;
+                top: calc(50%-13px);
+            }
+
+            .radio-item label::before{
+                height: 26px;
+                width: 26px;
+                left: 21px;
+                top: 21px;
+                background-color: var(--background);
+                transform: scale(5);
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.4s linear 0s;
+            }
+
+            .radio-item [type="radio"]:checked ~ label{
+                border: 2px solid var(--background);
+            } 
+
+            .radio-item [type="radio"]:checked ~ label::before{
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+        </style>
+    </head>
+    <body>
+        <section class="radio-section">
+            <div class="radio-list">
+                <h1>Choose?</h1>
+                <div class="radio-item"><input name="radio" id="radio1" type="radio"><label for="radio1">INSTAGRAM</label></div>
+                <div class="radio-item"><input name="radio" id="radio2" type="radio"><label for="radio2">TWITTER</label></div>
+                <div class="radio-item"><input name="radio" id="radio3" type="radio"><label for="radio3">LINKEDIN</label></div>
+            </div>
+        </section>
+    </body>
+</html>
