@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width" >
+        <title>Many Buttons</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+
+                user-select: none;
+            }
+            *:focus{
+                outline: none;
+            }
+            body, html{
+                font-family: Arial, Helvetica, sans-serif;;
+                background-color: #f1f9f9;
+            }
+            .table{
+                display: table;
+                width: 900px;
+                margin: 80px auto;
+                counter-reset: button-counter;
+            }
+            .row{
+                display: table-row;
+            }
+            .toggle-button-cover{
+                display: table-cell;
+                position: relative;
+                width: 300px;
+                height: 140px;
+            }
+            .button-cover{
+                height: 100px;
+                margin: 20px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0px 10px 20px -8px #c5d6d6;
+            }
+            .button-cover::before{
+                position: absolute;
+                right: 0px;
+                bottom: 0px;
+                counter-increment: button-counter 1;
+                content: counter(button-counter);
+                color: #d7e3e3;
+
+                font-size: 14px;
+                padding: 5px;
+            }
+            .button-cover,
+            .knobs,
+            .layer{
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            .button{
+                position: relative;
+                top: 45%;
+                width: 100px;
+                height: 50px;
+                margin: -20px auto 0 auto;
+                overflow: hidden;
+                background-color: aqua;
+            }
+            .button.r,
+            .button.r .layer{
+                border-radius: 100px;
+            }
+            .checkbox{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                margin: 0;
+                padding: 0;
+                cursor: pointer;
+                z-index: 3;
+            }
+            .knobs{
+                z-index: 2;
+            }
+            .layer{
+                width: 100%;
+                background-color: #ebf7fc;
+                transition: 0.3s ease all;
+                z-index: 1; 
+            }
+            #button-1 .knobs::before{
+                content: 'YES';
+                position: absolute;
+                top: 5px;
+                left: 7.2px;
+                width: 30px;
+                height: 20px;
+                color: #fff;
+                font-size: 10px;
+                font-weight: bold;
+                text-align: center;
+                background-color: #03a9f4;
+                padding: 15px 4px 4px 4px;
+                border-radius: 50%;
+                transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+            }
+            #button-1 .checkbox:checked + .knobs::before{
+                content: "NO";
+                left: 55px;
+                background-color: #f44336;
+            }
+
+            #button-2 .layer{
+                background-color: #bfe5f9;
+            }
+            #button-2 .knobs::before,
+            #button-2 .knobs::after{
+                position: absolute;
+                top: 5px;
+                left: 7.2px;
+                width: 30px;
+                height: 20px;
+                padding: 15px 4px 4px 4px;
+                font-size: 10px;
+                background-color: #03a9f4;
+                border-radius: 50%;
+                font-weight: bold;
+                text-align: center;
+                color: #fff;
+                transition: 0.3s ease all;
+            }
+
+            #button-2 .knobs::before{
+                content: "YES";
+            }
+            #button-2 .knobs::after{
+                content: "NO";
+                right: -40px;
+                left: auto;
+                background-color: #f44336;
+            }
+            #button-2 .checkbox:checked + .knobs::before{
+                left: -40px;
+            }
+            #button-2 .checkbox:checked ~ .layer{
+                background-color: #ffb4af;
+            }
+            #button-2 .checkbox:checked + .knobs::after{
+                right: 7.2px;
+            }
+
+            .button.r,
+            .button.r .layer{
+                border-radius: 0;
+            }
+            #button-3 .knobs:before,
+            #button-3 .knobs:after,
+            #button-3 .knobs span {
+            position: absolute;
+            top: 6px;
+            width: 30px;
+            height: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            padding: 15px 4px 4px 4px;
+            border-radius: 2px;
+            transition: 0.3s ease all;
+            }
+
+            #button-3 .knobs:before {
+            content: "";
+            left: 4px;
+            background-color: #03a9f4;
+            }
+
+            #button-3 .knobs:after {
+            content: "NO";
+            right: 4px;
+            }
+
+            #button-3 .knobs span {
+            display: inline-block;
+            left: 7px;
+            color: #fff;
+            z-index: 1;
+            }
+
+            #button-3 .checkbox:checked + .knobs:before {
+            left: 58px;
+            background-color: #f44336;
+            }
+            #button-3 .checkbox:checked ~ .knobs span{
+                color: #4e4e4e;
+            }
+            #button-3 .checkbox:checked + .knobs:after {
+            color: #fff;
+            }
+
+            #button-3 .checkbox:checked ~ .layer {
+            background-color: #fcebeb;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="table">
+
+            <div class="row">
+
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                        <div class="button r" id="button-1">
+
+                            <input name="checkbox" type="checkbox" id="checkbox-1" class="checkbox" />
+                            <div class="knobs"></div>
+                            <div class="layer"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                        <div class="button r" id="button-2">
+
+                            <input name="checkbox" type="checkbox" id="checkbox-2" class="checkbox" />
+                            <div class="knobs"></div>
+                            <div class="layer"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                        <div class="button r" id="button-3">
+
+                            <input name="checkbox" type="checkbox" id="checkbox-3" class="checkbox" />
+                            <div class="knobs"><span>YES</span></div>
+                            <div class="layer"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                        <div class="button r" id="button-4">
+
+                            <input name="checkbox" type="checkbox" id="checkbox-4" class="checkbox" />
+                            <div class="knobs"></div>
+                            <div class="layer"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+        
+    </body>
+</html>
