@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <html>
+        <head>
+            <meta charset="utf-8" >
+            <meta name="viewport" content="width=device-width" >
+            <title>Mini proect 5</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+                *{
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+                body, html{
+                    height: 100%;
+                    overflow-x: hidden;
+                }
+                body{
+                    font-family: Sour Gummy;
+                    background: #fff;
+                    overflow-x: hidden;
+                }
+                header{
+                    display: block;
+                    margin: 0 auto;
+                    width: 100%;
+                    max-width: 100%;
+                    background: linear-gradient(145deg, #FC466B 0% 30%, #ec44ff, #8000ff 100%);
+                    position: fixed;
+                    height: 60px!important;
+                    overflow: hidden;
+                    z-index: 10;
+                }
+                main{
+                    margin: 0 auto;
+                    display: block;
+                    height: 100%;
+                    margin-top: 60px;
+                }
+                .Main{
+                    display: table;
+                    height: 75%;
+                    width: 100%;
+                    text-align: center;
+                }
+                .Main p{
+                    display: table-cell;
+                    vertical-align: middle;
+                    font-size: 3em;
+                    font-weight: bold;
+                    letter-spacing: 1.25px;
+                }
+                .menu_sidebar{
+                    display: block;
+                    position: fixed;
+                    width: 200px;
+                    height: 100%;
+                    left: 0;
+                    top: 60px;
+                    transform: translateX(-300px);
+                    transition: transform 250ms ease-in-out;
+
+                    background: linear-gradient(145deg, #FC466B 0% 30%, #ec44ff, #9d3aff 100%);
+                }
+                .menu_ul{
+                    border-top: 1px solid rgba(255, 255, 255, 0.21);
+                }
+                .menu_ul li{
+                    list-style: none;
+                    text-transform: uppercase;
+                    padding: 20px;
+                    cursor: pointer;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.21);
+                }
+                .menu_ul li a{
+                    color: #fff;
+                    text-decoration: none;
+                    user-select: none;
+                }
+                .menu_ul li:hover{
+                    opacity: 0.8;
+                }
+                header input[type="checkbox"]:checked ~ .menu_sidebar{
+                    transform: translateX(0);
+                }
+                input[type="checkbox"]{
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    top: 15px;
+                    left: 25px;
+                    opacity: 0;
+                }
+                .sidebar_open_icon{
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    top: 15px;
+                    left: 25px;
+                    z-index: 100;
+                    cursor: pointer;
+                }
+                .in_one{
+                    position: absolute;
+                    width: 100%;
+                    height: 3px;
+                    background: #fff;
+                }
+                .part-1{
+                    top: 5px;    
+                }
+                .part-2{
+                    top: 12px;
+                }
+                .part-3{
+                    top: 19px;
+                }
+
+                @keyframes _in_center {
+                    to{
+                        top: 12px;
+                    }
+                }
+                @keyframes rotate_part1{
+                    to{
+                        transform: rotate(45deg);
+                    }
+                }
+                @keyframes rotate_part3{
+                    to{
+                        transform: rotate(-45deg);
+                    }
+                }
+                header input[type="checkbox"]:checked ~ .sidebar_open_icon > .part-1{
+                    animation: _in_center 0.2s cubic-bezier(0.215, 0.8, 0.355, 1) forwards, rotate_part1 0.2s 0.2s cubic-bezier(0.215, 0.8, 0.355, 1) forwards;
+
+                }
+                header input[type="checkbox"]:checked ~ .sidebar_open_icon > .part-2{
+                    opacity: 0;
+                }
+                header input[type="checkbox"]:checked ~ .sidebar_open_icon > .part-3{
+                    animation: _in_center 0.2s cubic-bezier(0.215, 0.8, 0.355, 1) forwards, rotate_part3 0.2s 0.2s cubic-bezier(0.215, 0.8, 0.355, 1) forwards;
+                }
+
+            </style>
+        </head>
+        <body>
+            <header>
+
+                <input type="checkbox" class="open_sidebar" id="open_sidebar" />
+                <label for="open_sidebar" class="sidebar_open_icon">
+                    <div class="in_one vertical part-1"></div>
+                    <div class="in_one gorisontal part-2"></div>
+                    <div class="in_one vertical part-3"></div>
+                </label>
+                <div class="menu_sidebar">
+                    <ul class="menu_ul">
+                        <li><a href="#" target="_blank">Home</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Connect</a></li>
+                        <li><a href="#">About us</a></li>
+                    </ul>
+                </div>
+
+            </header>
+            <main>
+                <div class="Main">
+                    <p>Cool site. I`m good</p>
+                </div>
+                <div class="Main">
+                    <p>Cool site. I`m good</p>
+                </div>
+                <div class="Main">
+                    <p>Cool site. I`m good</p>
+                </div>
+            </main>
+        </body>
+    </html>
+</html>
